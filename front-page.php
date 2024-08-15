@@ -1,4 +1,6 @@
-		<?php get_Header(); ?>
+		<?php
+		get_header();
+		?>
 
 		<!-- Main -->
 		<div id="main">
@@ -303,4 +305,4 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		</div>
 
-		<?php get_Footer(); ?>
+		<?php get_footer(); ?>

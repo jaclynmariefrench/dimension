@@ -1,5 +1,13 @@
 <?php
 
+function dimension_theme_support() {
+    //adds dynamic title tag support
+    add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme', 'dimension_theme_support');
+
+
 function dimension_register_assets() {
     // Log to check if this function is being executed
     error_log('dimension_register_assets called.');
