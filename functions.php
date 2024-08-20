@@ -103,11 +103,11 @@ add_action('wp_enqueue_scripts', 'dimension_register_assets');
 
 
 //customize header
-require get_template_directory() . '/customize-header.php';
+require get_template_directory() . '/customize/customize-header.php';
 //customize background image
-require get_template_directory() . '/customize-bg.php';
+require get_template_directory() . '/customize/customize-bg.php';
 //customize footer
-require get_template_directory() . '/customize-footer.php';
+require get_template_directory() . '/customize/customize-footer.php';
 
 
 
