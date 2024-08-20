@@ -1,5 +1,5 @@
 <?php
-function dimension_customize_register($wp_customize) {
+function dimension_customize_header_register($wp_customize) {
     // Add section for header content
     $wp_customize->add_section('header_content_section', array(
         'title' => __('Header Content', 'dimension'),
@@ -46,4 +46,4 @@ function dimension_customize_register($wp_customize) {
     )));
 
 }
-add_action('customize_register', 'dimension_customize_register');
+add_action('customize_register', 'dimension_customize_header_register');
