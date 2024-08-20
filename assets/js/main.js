@@ -359,6 +359,7 @@
                     $('#main').css('display', 'flex');
                     $('article').addClass('active');
                     $('header').css('display', 'none');
+                    $body.addClass('is-article-visible');
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching article:', error);
@@ -388,7 +389,8 @@
         $('#main').removeClass('active');
         $('#main').css('display', 'none');
         $('article').removeClass('active');
-        $('header').css('display', 'flex'); // Show the header
+        $('header').css('display', 'flex');
+         $body.removeClass('is-article-visible');
     });
 });
 
