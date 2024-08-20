@@ -106,6 +106,8 @@ add_action('wp_enqueue_scripts', 'dimension_register_assets');
 require get_template_directory() . '/customize-header.php';
 //customize background image
 require get_template_directory() . '/customize-bg.php';
+//customize footer
+require get_template_directory() . '/customize-footer.php';
 
 
 
