@@ -20,26 +20,50 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 }
 
-// To load modal articles in template
 function load_modal_article() {
-    // Check if the slug parameter is set
+    error_log('load_modal_article function called');
+
     if (isset($_GET['slug'])) {
         $slug = sanitize_text_field($_GET['slug']);
-        
-        // Query the post by slug
-        $post = get_page_by_path($slug, OBJECT, 'page');
-        
-        if ($post) {
-            // Return the post content
-            echo apply_filters('the_content', $post->post_content);
+        error_log('Slug received: ' . $slug);
+
+        // Query the page by slug
+        $query = new WP_Query(array(
+            'name'           => $slug,
+            'post_type'      => 'page',
+            'post_status'    => 'publish',
+            'posts_per_page' => 1
+        ));
+
+        if ($query->have_posts()) {
+            $post = $query->post;
+            error_log('Page found: ' . $post->post_title);
+
+            // Start output buffering
+            ob_start();
+
+            // Pass the post to the template part
+            set_query_var('custom_post', $post);
+            get_template_part('templates/modal-article');
+
+            // Get the buffered content and clean the buffer
+            $content = ob_get_clean();
+            error_log('Buffered content length: ' . strlen($content));
+
+            // Return the content
+            echo $content;
         } else {
+            error_log('Page not found for slug: ' . $slug);
             echo 'Post not found';
         }
     } else {
+        error_log('No slug provided');
         echo 'No slug provided';
     }
+
     wp_die(); // This is required to terminate immediately and return a proper response
 }
+
 add_action('wp_ajax_load_modal_article', 'load_modal_article');
 add_action('wp_ajax_nopriv_load_modal_article', 'load_modal_article');
 

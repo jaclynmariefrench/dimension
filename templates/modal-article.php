@@ -1,35 +1,26 @@
 <?php
-/*
-Template Name: Modal Article
-*/
-get_header();
+// Retrieve the post from query variables
+$post = get_query_var('custom_post');
+
+if ($post && $post instanceof WP_Post) {
+    error_log('Template found post content. Post Title: ' . get_the_title($post));
+    ?>
+    <article id="<?php echo sanitize_title(get_the_title($post)); ?>">
+        <h2 class="major"><?php echo get_the_title($post); ?></h2>
+        <div class="content">
+            <?php echo apply_filters('the_content', $post->post_content); ?>
+        </div>
+    </article>
+    <?php
+} else {
+    error_log('Template unable to find post content. Post object: ' . print_r($post, true));
+    echo 'No content found';
+}
 ?>
 
-<!-- Main -->
-<div id="main">
-    <?php
-    if ( have_posts() ) :
-        while ( have_posts() ) : the_post();
-    ?>
-        <article id="<?php echo sanitize_title(get_the_title()); ?>">
-            <h2 class="major"><?php the_title(); ?></h2>
-            <span class="image main">
-                <?php 
-                if ( has_post_thumbnail() ) {
-                    the_post_thumbnail('full');
-                } else {
-                    echo '<img src="' . get_template_directory_uri() . '/assets/images/pic01.jpg" alt="" />';
-                }
-                ?>
-            </span>
-            <div class="content">
-                <?php the_content(); ?>
-            </div>
-        </article>
-    <?php
-        endwhile;
-    endif;
-    ?>
-</div>
 
-<?php get_footer(); ?>
+
+
+
+
+
