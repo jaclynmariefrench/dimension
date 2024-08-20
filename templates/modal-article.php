@@ -10,6 +10,7 @@ if ($post && $post instanceof WP_Post) {
         <div class="content">
             <?php echo apply_filters('the_content', $post->post_content); ?>
         </div>
+        <div class="close">Close</div> 
     </article>
     <?php
 } else {
