@@ -335,6 +335,8 @@
   // Clickhandler for the menu to redirect the url
   document.addEventListener('DOMContentLoaded', function() {
     const menuItems = document.querySelectorAll('nav a[data-article-id]');
+    const closeButton = document.querySelector('.close');
+    const mainElement = document.getElementById('main');
     
     // Function to load article based on hash
     function loadArticleFromHash() {
@@ -352,19 +354,32 @@
                 },
                 success: function(response) {
                     // Insert the fetched content into the appropriate container
-                    $('#main').html(response);
+                    mainElement.innerHTML = response;
 
                     // Update classes to show the article
-                    $('#main').addClass('active');
-                    $('#main').css('display', 'flex');
-                    $('article').addClass('active');
-                    $('header').css('display', 'none');
-                    $body.addClass('is-article-visible');
+                    mainElement.classList.add('active');
+                    mainElement.style.display = 'flex';
+                    const article = document.querySelector('article');
+                    if (article) {
+                        article.classList.add('active');
+                    }
+                    document.querySelector('header').style.display = 'none';
+                    document.body.classList.add('is-article-visible');
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching article:', error);
                 }
             });
+        } else if (document.getElementById('post-not-found')) {
+            // Show 404 content
+            mainElement.style.display = 'flex';
+            const article = document.getElementById('post-not-found');
+            if (article) {
+                article.classList.add('active');
+                article.style.display = 'block';
+            }
+            document.querySelector('header').style.display = 'none';
+            document.body.classList.add('is-article-visible');
         }
     }
 
@@ -386,11 +401,20 @@
 
     // Close button functionality
     $(document).on('click', '.close', function() {
-        $('#main').removeClass('active');
-        $('#main').css('display', 'none');
-        $('article').removeClass('active');
-        $('header').css('display', 'flex');
-         $body.removeClass('is-article-visible');
+        if (document.getElementById('post-not-found')) {
+            // Redirect to the homepage
+            window.location.href = siteData.home_url; // Redirect to homepage using localized variable
+        } else {
+            // Close the modal for other pages
+            mainElement.classList.remove('active');
+            mainElement.style.display = 'none';
+            const article = document.querySelector('article');
+            if (article) {
+                article.classList.remove('active');
+            }
+            document.querySelector('header').style.display = 'flex';
+            document.body.classList.remove('is-article-visible');
+        }
     });
 });
 
