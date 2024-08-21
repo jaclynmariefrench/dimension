@@ -248,12 +248,12 @@
   $main_articles.each(function () {
     var $this = $(this);
 
-    // Close.
-    $('<div class="close">Close</div>')
-      .appendTo($this)
-      .on("click", function () {
-        location.hash = "";
-      });
+    // Jackie changed this. Close.
+    // $('<div class="close">Close</div>')
+    //   .appendTo($this)
+    //   .on("click", function () {
+    //     window.location.href = "";
+    //   });
 
     // Prevent clicks from inside article from bubbling.
     $this.on("click", function (event) {
@@ -333,91 +333,88 @@
     });
 
   // Clickhandler for the menu to redirect the url
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('nav a[data-article-id]');
-    const closeButton = document.querySelector('.close');
-    const mainElement = document.getElementById('main');
-    
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuItems = document.querySelectorAll("nav a[data-article-id]");
+    const closeButton = document.querySelector(".close");
+    const mainElement = document.getElementById("main");
+
     // Function to load article based on hash
     function loadArticleFromHash() {
-        const hash = window.location.hash.substring(1); // Remove the '#' from the hash
-        if (hash) {
-            console.log('Loading article for hash:', hash);
+      const hash = window.location.hash.substring(1); // Remove the '#' from the hash
+      if (hash) {
+        console.log("Loading article for hash:", hash);
 
-            // Fetch the modal-article.php content using the localized ajaxurl
-            $.ajax({
-                url: ajaxurl.ajax_url, // Use the localized ajaxurl.ajax_url
-                type: 'GET',
-                data: {
-                    action: 'load_modal_article',
-                    slug: hash // Make sure the parameter matches what the PHP code expects
-                },
-                success: function(response) {
-                    // Insert the fetched content into the appropriate container
-                    mainElement.innerHTML = response;
+        // Fetch the modal-article.php content using the localized ajaxurl
+        $.ajax({
+          url: ajaxurl.ajax_url, // Use the localized ajaxurl.ajax_url
+          type: "GET",
+          data: {
+            action: "load_modal_article",
+            slug: hash, // Make sure the parameter matches what the PHP code expects
+          },
+          success: function (response) {
+            // Insert the fetched content into the appropriate container
+            mainElement.innerHTML = response;
 
-                    // Update classes to show the article
-                    mainElement.classList.add('active');
-                    mainElement.style.display = 'flex';
-                    const article = document.querySelector('article');
-                    if (article) {
-                        article.classList.add('active');
-                    }
-                    document.querySelector('header').style.display = 'none';
-                    document.body.classList.add('is-article-visible');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching article:', error);
-                }
-            });
-        } else if (document.getElementById('post-not-found')) {
-            // Show 404 content
-            mainElement.style.display = 'flex';
-            const article = document.getElementById('post-not-found');
+            // Update classes to show the article
+            mainElement.classList.add("active");
+            mainElement.style.display = "flex";
+            const article = document.querySelector("article");
             if (article) {
-                article.classList.add('active');
-                article.style.display = 'block';
+              article.classList.add("active");
             }
-            document.querySelector('header').style.display = 'none';
-            document.body.classList.add('is-article-visible');
+            document.querySelector("header").style.display = "none";
+            document.body.classList.add("is-article-visible");
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching article:", error);
+          },
+        });
+      } else if (document.getElementById("post-not-found")) {
+        // Show 404 content
+        mainElement.style.display = "flex";
+        const article = document.getElementById("post-not-found");
+        if (article) {
+          article.classList.add("active");
+          article.style.display = "block";
         }
+        document.querySelector("header").style.display = "none";
+        document.body.classList.add("is-article-visible");
+      }
     }
 
     // Initial load based on the current hash
     loadArticleFromHash();
 
     // Listen for hash changes
-    window.addEventListener('hashchange', loadArticleFromHash);
+    window.addEventListener("hashchange", loadArticleFromHash);
 
     // Click handler for the menu to redirect the URL
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            const articleId = this.getAttribute('data-article-id');
-            console.log('Collected article-id:', articleId);
-            window.location.hash = articleId; // This will trigger the hashchange event
-        });
+    menuItems.forEach((item) => {
+      item.addEventListener("click", function (event) {
+        event.preventDefault();
+        const articleId = this.getAttribute("data-article-id");
+        console.log("Collected article-id:", articleId);
+        window.location.hash = articleId; // This will trigger the hashchange event
+      });
     });
 
     // Close button functionality
-    $(document).on('click', '.close', function() {
-        if (document.getElementById('post-not-found')) {
-            // Redirect to the homepage
-            window.location.href = siteData.home_url; // Redirect to homepage using localized variable
-        } else {
-            // Close the modal for other pages
-            mainElement.classList.remove('active');
-            mainElement.style.display = 'none';
-            const article = document.querySelector('article');
-            if (article) {
-                article.classList.remove('active');
-            }
-            document.querySelector('header').style.display = 'flex';
-            document.body.classList.remove('is-article-visible');
+    $(document).on("click", ".close", function () {
+      if (document.getElementById("post-not-found")) {
+        // Redirect to the homepage
+        window.location.href = siteData.home_url; // Redirect to homepage using localized variable
+      } else {
+        // Close the modal for other pages
+        mainElement.classList.remove("active");
+        mainElement.style.display = "none";
+        const article = document.querySelector("article");
+        if (article) {
+          article.classList.remove("active");
         }
+        document.querySelector("header").style.display = "flex";
+        document.body.classList.remove("is-article-visible");
+      }
     });
-});
-
-
+  });
 })(jQuery);
-
