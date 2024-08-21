@@ -1,6 +1,6 @@
 <?php
 error_log('404.php template loaded');
-get_header(); // Include the header
+get_header(); 
 ?>
 
 <div id="main">
@@ -25,5 +25,5 @@ get_header(); // Include the header
 </script>
 
 <?php
-get_footer(); // Include the footer
+get_footer();
 ?>
