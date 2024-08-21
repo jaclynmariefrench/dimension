@@ -1,15 +1,17 @@
 <?php
 
 // To get article IDs from menu
-class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
-    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
+{
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    {
         // Get the post ID associated with the menu item
         $post_id = get_post_meta($item->ID, '_menu_item_object_id', true);
-        
+
         // Get the post title and sanitize it
         $post_title = get_the_title($post_id);
         $sanitized_title = sanitize_title($post_title);
-        
+
         // Generate the menu item HTML
         $output .= sprintf(
             '<li><a href="#%s" data-article-id="%s">%s</a></li>',
@@ -54,11 +56,17 @@ function load_modal_article() {
             echo $content;
         } else {
             error_log('Page not found for slug: ' . $slug);
-            echo 'Post not found';
+
+            // Return 404 response
+            $response = array('error' => 'not_found', 'message' => 'Page not found');
+            echo json_encode($response);
         }
     } else {
         error_log('No slug provided');
-        echo 'No slug provided';
+
+        // Return 404 response
+        $response = array('error' => 'no_slug', 'message' => 'No slug provided');
+        echo json_encode($response);
     }
 
     wp_die(); // This is required to terminate immediately and return a proper response
@@ -69,7 +77,9 @@ add_action('wp_ajax_nopriv_load_modal_article', 'load_modal_article');
 
 
 
-function dimension_theme_support() {
+
+function dimension_theme_support()
+{
     //adds dynamic title tag support
     add_theme_support('title-tag');
 
@@ -81,8 +91,20 @@ function dimension_theme_support() {
 
 add_action('after_setup_theme', 'dimension_theme_support');
 
+function enqueue_admin_modify_preview_link_script() {
+    wp_enqueue_script(
+        'modify-preview-link-admin',
+        get_template_directory_uri() . '/assets/js/modify-preview-link.js',
+        array(),
+        null,
+        true
+    );
+}
+add_action('admin_enqueue_scripts', 'enqueue_admin_modify_preview_link_script');
 
-function dimension_register_assets() {
+
+function dimension_register_assets()
+{
     // Enqueue styles
     wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/fonts/fontawesome-all.min.css');
     wp_enqueue_style('dimension-style', get_template_directory_uri() . '/style.css', array('font-awesome'), '1.1', 'all');
@@ -97,6 +119,12 @@ function dimension_register_assets() {
     // Enqueue the custom.js file and localize the ajax URL
     wp_enqueue_script('custom-js', get_template_directory_uri() . '/assets/js/custom.js', array('dimension-main'), null, true);
     wp_localize_script('custom-js', 'ajaxurl', array('ajax_url' => admin_url('admin-ajax.php')));
+
+    // Localize scripts with AJAX URL and Home URL
+    wp_localize_script('custom-js', 'myScriptVars', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'home_url' => home_url()
+    ));
 }
 
 add_action('wp_enqueue_scripts', 'dimension_register_assets');
@@ -108,7 +136,3 @@ require get_template_directory() . '/customize/customize-header.php';
 require get_template_directory() . '/customize/customize-bg.php';
 //customize footer
 require get_template_directory() . '/customize/customize-footer.php';
-
-
-
-
