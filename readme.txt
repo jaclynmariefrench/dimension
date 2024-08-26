@@ -51,4 +51,4 @@ This template is distributed under the Creative Commons Attribution 3.0 License.
 ## Credits
 - **HTML5 UP**: Original HTML5 template by HTML5 UP (html5up.net).
 - **Font Awesome**: Icon library by Font Awesome (fontawesome.com).
-- **jQuery**: JavaScript library by jQuery (jquery.com).
+- **jQuery**: JavaScript library by jQuery (jquery.com)
