@@ -35,6 +35,9 @@ Dimension is a responsive HTML5 template by HTML5 UP, converted into a WordPress
 - **jQuery**: Ensure jQuery is loaded in your WordPress site.
 - **Font Awesome**: The template uses Font Awesome for icons. Make sure it is enqueued in your theme.
 
+## Disclaimer
+I am not associated with the original creator of the Dimension HTML5 template, [HTML5 UP](https://html5up.net). This WordPress theme is a conversion of their work. I am a new WordPress developer and created this theme to practice and improve my skills.
+
 ## Contributing
 We welcome contributions to improve this template. To contribute:
 1. Fork the repository.
@@ -48,4 +51,4 @@ This template is distributed under the Creative Commons Attribution 3.0 License.
 ## Credits
 - **HTML5 UP**: Original HTML5 template by HTML5 UP (html5up.net).
 - **Font Awesome**: Icon library by Font Awesome (fontawesome.com).
-- **jQuery**: JavaScript library by jQuery (jquery.com).
+- **jQuery**: JavaScript library by jQuery (jquery.com)
