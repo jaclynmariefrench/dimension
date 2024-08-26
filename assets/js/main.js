@@ -248,7 +248,7 @@
   $main_articles.each(function () {
     var $this = $(this);
 
-    // Jackie changed this. Close.
+    // Commented out for wp-template. Close.
     // $('<div class="close">Close</div>')
     //   .appendTo($this)
     //   .on("click", function () {
