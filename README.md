@@ -11,7 +11,7 @@ Dimension is a responsive HTML5 template by [HTML5 UP](https://html5up.net/), co
 - Cross-browser compatibility
 
 ## Installation
-1. **Download the Theme**: Download the theme files from the repository or the provided link.
+1. **Download the Theme**: Download the theme files from the repository.
 2. **Upload to WordPress**:
    - Go to your WordPress admin dashboard.
    - Navigate to `Appearance > Themes`.
