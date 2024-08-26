@@ -1,4 +1,3 @@
-# dimension
 # Dimension WordPress Template
 
 ## Description
