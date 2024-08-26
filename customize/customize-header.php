@@ -45,5 +45,27 @@ function dimension_customize_header_register($wp_customize) {
         'settings' => 'header_logo',
     )));
 
+    //social links section
+    $wp_customize->add_section('social_media_section', array(
+        'title' => __('Social Media Links', 'dimension'),
+        'priority' => 30,
+    ));
+
+    // Add settings and controls for each social media link
+    $social_networks = array('twitter', 'facebook', 'instagram', 'github', 'linkedin', 'tiktok');
+
+    foreach ($social_networks as $network) {
+        $wp_customize->add_setting("{$network}_link", array(
+            'default' => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+
+        $wp_customize->add_control("{$network}_link", array(
+            'label' => ucfirst($network) . ' URL',
+            'section' => 'social_media_section',
+            'type' => 'url',
+        ));
+    }
+
 }
 add_action('customize_register', 'dimension_customize_header_register');
