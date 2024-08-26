@@ -1,4 +1,5 @@
 # Dimension WordPress Template
+![Screen Recording 2024-08-26 at 5 26 34 PM](https://github.com/user-attachments/assets/45c35070-ed31-4962-9cbc-69d340647a8c)
 
 ## Description
 Dimension is a responsive HTML5 template by [HTML5 UP](https://html5up.net/), converted into a WordPress theme. This template is suitable for personal and commercial use, providing a clean and modern design with a focus on simplicity and usability.
