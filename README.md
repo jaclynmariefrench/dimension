@@ -1,7 +1,7 @@
 # Dimension WordPress Template
 
 ## Description
-Dimension is a responsive HTML5 template by HTML5 UP, converted into a WordPress theme. This template is suitable for personal and commercial use, providing a clean and modern design with a focus on simplicity and usability.
+Dimension is a responsive HTML5 template by [HTML5 UP](https://html5up.net/), converted into a WordPress theme. This template is suitable for personal and commercial use, providing a clean and modern design with a focus on simplicity and usability.
 
 ## Features
 - Responsive design
@@ -43,9 +43,9 @@ We welcome contributions to improve this template. To contribute:
 4. Submit a pull request with a detailed description of your changes.
 
 ## License
-This template is distributed under the Creative Commons Attribution 3.0 License. You are free to use it for personal and commercial purposes, provided you give credit to HTML5 UP.
+This template is distributed under the Creative Commons Attribution 3.0 License. You are free to use it for personal and commercial purposes, provided you give credit to [HTML5 UP](https://html5up.net/).
 
 ## Credits
-- **HTML5 UP**: Original HTML5 template by HTML5 UP (html5up.net).
+- **HTML5 UP**: Original HTML5 [template](https://html5up.net/dimension) by HTML5 UP (html5up.net).
 - **Font Awesome**: Icon library by Font Awesome (fontawesome.com).
 - **jQuery**: JavaScript library by jQuery (jquery.com).
